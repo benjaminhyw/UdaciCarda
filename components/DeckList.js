@@ -3,12 +3,12 @@ import { View, Text, Platform, StyleSheet } from "react-native";
 import { white } from "../utils/colors";
 import { connect } from "react-redux";
 
-class DeckListView extends Component {
+class DeckList extends Component {
   render() {
     let { deckIds, decks } = this.props;
     return (
       <View>
-        <Text>DECK LIST VIEW</Text>
+        <Text>DECK LIST</Text>
         {deckIds &&
           deckIds.map(deckId => {
             return (
@@ -56,4 +56,4 @@ function mapStateToProps(decks) {
   };
 }
 
-export default connect(mapStateToProps)(DeckListView);
+export default connect(mapStateToProps)(DeckList);
