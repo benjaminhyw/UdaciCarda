@@ -7,11 +7,13 @@ export const DECK_STORAGE_KEY = "UdaciCards:deck";
 //   return AsyncStorage.getItem(CALENDAR_STORAGE_KEY).then(formatCalendarResults);
 // } // this will be like getDeckListResults or something, maybe
 
-export function submitTitle({ title, key }) {
+export function submitDeck(deck) {
   return AsyncStorage.mergeItem(
     DECK_STORAGE_KEY,
     JSON.stringify({
-      [key]: title
+      [deck.key]: deck.key,
+      [deck.title]: deck.title,
+      [deck.questions]: deck.questions
     })
   );
 }
