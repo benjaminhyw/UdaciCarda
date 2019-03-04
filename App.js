@@ -1,15 +1,18 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
-import DeckListView from "./components/DeckListView";
 import UdaciStatusBar from "./components/UdaciStatusBar";
+import Nav from "./components/Nav";
+import { createAppContainer } from "react-navigation";
 import { purple } from "./utils/colors";
+
+const AppContainer = createAppContainer(Nav);
 
 export default class App extends React.Component {
   render() {
     return (
-      <View>
+      <View style={{ flex: 1 }}>
         <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
-        <DeckListView />
+        <AppContainer />
       </View>
     );
   }
