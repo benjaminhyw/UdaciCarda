@@ -11,6 +11,8 @@ import { timeToString } from "../utils/helpers";
 import { purple, white } from "../utils/colors";
 import { connect } from "react-redux";
 import { addDeck } from "../actions";
+import { submitTitle } from "../utils/api";
+import { NavigationActions } from "react-navigation";
 
 function SubmitBtn({ onPress }) {
   return (
@@ -35,14 +37,24 @@ class AddDeck extends Component {
     const key = timeToString();
     const title = this.state;
 
-    // this.props.dispatch(
-    //   addDeck({
-    //     [key]: title
-    //   })
-    // );
+    this.props.dispatch(
+      addDeck({
+        [key]: title
+      })
+    );
 
     console.log(key);
     console.log(title);
+    this.toHome();
+    submitTitle({ key, title });
+  };
+
+  toHome = () => {
+    this.props.navigation.dispatch(
+      NavigationActions.back({
+        key: "AddDeck"
+      })
+    );
   };
 
   render() {
