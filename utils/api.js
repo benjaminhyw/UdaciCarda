@@ -3,8 +3,11 @@ import { AsyncStorage } from "react-native";
 
 export const DECK_STORAGE_KEY = "UdaciCards:deck";
 
-// export function fetchCalendarResults() {
-//   return AsyncStorage.getItem(CALENDAR_STORAGE_KEY).then(formatCalendarResults);
+// export async function fetchDeckList() {
+//   let results = await AsyncStorage.getItem(DECK_STORAGE_KEY);
+//   // .then(formatCalendarResults);
+//   console.log(results);
+//   return results;
 // } // this will be like getDeckListResults or something, maybe
 
 export function submitDeck(deck) {
