@@ -30,15 +30,14 @@ function SubmitBtn({ onPress }) {
 class AddDeck extends Component {
   constructor(props) {
     super(props);
-    this.state = { title: "Enter title here.." };
+    this.state = {
+      title: "Enter title here.."
+    };
   }
 
   submit = () => {
     const key = timeToString();
-    const title = this.state;
-
-    console.log(key);
-    console.log(title);
+    const { title } = this.state;
 
     let deck = {
       key: key,
