@@ -16,7 +16,7 @@ const Tabs = createBottomTabNavigator(
       navigationOptions: {
         tabBarLabel: "Decks",
         tabBarIcon: ({ tintColor }) => (
-          <Ionicons name="ios-bookmarks" size={30} color={tintColor} />
+          <Ionicons name="ios-albums" size={30} color={tintColor} />
         )
       }
     },

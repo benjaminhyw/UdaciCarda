@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View } from "react-native";
 import UdaciStatusBar from "./components/UdaciStatusBar";
 import Nav from "./components/Nav";
 import { createAppContainer } from "react-navigation";
