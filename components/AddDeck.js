@@ -10,6 +10,7 @@ import {
 import { timeToString } from "../utils/helpers";
 import { purple, white } from "../utils/colors";
 import { connect } from "react-redux";
+import { addDeck } from "../actions";
 
 function SubmitBtn({ onPress }) {
   return (
@@ -24,7 +25,7 @@ function SubmitBtn({ onPress }) {
   );
 }
 
-export default class AddDeck extends Component {
+class AddDeck extends Component {
   constructor(props) {
     super(props);
     this.state = { title: "Enter title here.." };
@@ -32,7 +33,13 @@ export default class AddDeck extends Component {
 
   submit = () => {
     const key = timeToString();
-    const title = this.props;
+    const title = this.state;
+
+    // this.props.dispatch(
+    //   addDeck({
+    //     [key]: title
+    //   })
+    // );
 
     console.log(key);
     console.log(title);
@@ -106,4 +113,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect(mapStateToProps)(AddDeck);
+export default connect()(AddDeck);
