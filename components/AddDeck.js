@@ -7,7 +7,9 @@ import {
   Platform,
   StyleSheet
 } from "react-native";
+import { timeToString } from "../utils/helpers";
 import { purple, white } from "../utils/colors";
+import { connect } from "react-redux";
 
 function SubmitBtn({ onPress }) {
   return (
@@ -22,14 +24,18 @@ function SubmitBtn({ onPress }) {
   );
 }
 
-export default class DeckListView extends Component {
+export default class AddDeck extends Component {
   constructor(props) {
     super(props);
     this.state = { title: "Enter title here.." };
   }
 
   submit = () => {
-    console.log(this.state.text);
+    const key = timeToString();
+    const title = this.props;
+
+    console.log(key);
+    console.log(title);
   };
 
   render() {
@@ -99,3 +105,5 @@ const styles = StyleSheet.create({
     marginLeft: 30
   }
 });
+
+export default connect(mapStateToProps)(AddDeck);

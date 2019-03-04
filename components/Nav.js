@@ -4,7 +4,7 @@ import {
   createStackNavigator
 } from "react-navigation";
 import DeckListView from "./DeckListView";
-import AddDeckView from "./AddDeckView";
+import AddDeck from "./AddDeck";
 import { Platform } from "expo-core";
 import { purple, white } from "../utils/colors";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
@@ -20,8 +20,8 @@ const Tabs = createBottomTabNavigator(
         )
       }
     },
-    AddDeckView: {
-      screen: AddDeckView,
+    AddDeck: {
+      screen: AddDeck,
       navigationOptions: {
         tabBarLabel: "Add Deck",
         tabBarIcon: ({ tintColor }) => (
