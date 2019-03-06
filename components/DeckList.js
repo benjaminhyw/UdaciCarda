@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, Platform, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Platform,
+  StyleSheet,
+  TouchableOpacity
+} from "react-native";
 import { white } from "../utils/colors";
 import { connect } from "react-redux";
 
@@ -12,10 +18,17 @@ class DeckList extends Component {
         {deckIds &&
           deckIds.map(deckId => {
             return (
-              <View key={deckId} style={styles.item}>
-                <Text>{decks[deckId].title}</Text>
-                <Text>{`${decks[deckId].questions.length} Questions`}</Text>
-              </View>
+              <TouchableOpacity
+                key={deckId}
+                onPress={() => {
+                  this.props.navigation.navigate("DeckDetail", { deckId });
+                }}
+              >
+                <View style={styles.item}>
+                  <Text>{decks[deckId].title}</Text>
+                  <Text>{`${decks[deckId].questions.length} Questions`}</Text>
+                </View>
+              </TouchableOpacity>
             );
           })}
       </View>
