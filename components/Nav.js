@@ -8,6 +8,7 @@ import AddDeck from "./AddDeck";
 import { Platform } from "expo-core";
 import { purple, white } from "../utils/colors";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import DeckDetail from "./DeckDetail";
 
 const Tabs = createBottomTabNavigator(
   {
@@ -52,8 +53,21 @@ const Tabs = createBottomTabNavigator(
 );
 const Nav = createStackNavigator({
   Home: {
-    screen: Tabs
+    screen: Tabs,
+    navigationOptions: {
+      title: "Home"
+    }
+  },
+  DeckDetail: {
+    screen: DeckDetail,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      }
+    }
   }
+
   // below will have to be when you click on a deck
   //   EntryDetail: {
   //     screen: EntryDetail,
