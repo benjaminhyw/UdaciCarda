@@ -22,7 +22,7 @@ class DeckDetail extends Component {
 
   addCard() {
     console.log("Add Card was pressed");
-    this.props.goBack();
+    this.props.navigation.navigate("AddCard");
   }
 
   startQuiz() {
@@ -43,9 +43,11 @@ class DeckDetail extends Component {
         <Text>Deck ID: {this.props.navigation.state.params.deckId}</Text>
         <Text>{this.props.deckInformation.title}</Text>
         <Text>{this.props.deckInformation.questions.length} cards</Text>
+
         <TextButton onPress={this.addCard} style={{ margin: 20 }}>
           ADD CARD
         </TextButton>
+
         <TextButton onPress={this.startQuiz} style={{ margin: 20 }}>
           START QUIZ
         </TextButton>
