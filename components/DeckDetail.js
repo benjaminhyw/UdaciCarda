@@ -12,6 +12,29 @@ class DeckDetail extends Component {
     };
   };
 
+  constructor(props) {
+    super(props);
+
+    this.addCard = this.addCard.bind(this);
+    this.startQuiz = this.startQuiz.bind(this);
+    this.deleteDeck = this.deleteDeck.bind(this);
+  }
+
+  addCard() {
+    console.log("Add Card was pressed");
+    this.props.goBack();
+  }
+
+  startQuiz() {
+    console.log("Start Quiz was pressed");
+    this.props.goBack();
+  }
+
+  deleteDeck() {
+    console.log("Delete Deck was pressed");
+    this.props.goBack();
+  }
+
   render() {
     const { deckInformation } = this.props;
     console.log(deckInformation);
@@ -19,22 +42,13 @@ class DeckDetail extends Component {
       <View style={styles.container}>
         <Text>Deck ID: {this.props.navigation.state.params.deckId}</Text>
         <Text>{this.props.deckInformation.title}</Text>
-        <TextButton
-          onPress={() => console.log("Add Card was pressed")}
-          style={{ margin: 20 }}
-        >
+        <TextButton onPress={this.addCard} style={{ margin: 20 }}>
           ADD CARD
         </TextButton>
-        <TextButton
-          onPress={() => console.log("Start Quiz was pressed")}
-          style={{ margin: 20 }}
-        >
+        <TextButton onPress={this.startQuiz} style={{ margin: 20 }}>
           START QUIZ
         </TextButton>
-        <TextButton
-          onPress={() => console.log("Delete was pressed")}
-          style={{ margin: 20 }}
-        >
+        <TextButton onPress={this.deleteDeck} style={{ margin: 20 }}>
           Delete
         </TextButton>
       </View>
@@ -58,4 +72,21 @@ function mapStateToProps(state, { navigation }) {
   };
 }
 
-export default connect(mapStateToProps)(DeckDetail);
+function mapDispatchToProps(dispatch, { navigation }) {
+  const { deckId } = navigation.state.params;
+
+  return {
+    // remove: () =>
+    //   dispatch(
+    //     addEntry({
+    //       [deckId]: timeToString() === deckId ? getDailyReminderValue() : null
+    //     })
+    //   ),
+    goBack: () => navigation.goBack()
+  };
+}
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(DeckDetail);
