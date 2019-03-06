@@ -42,6 +42,7 @@ class DeckDetail extends Component {
       <View style={styles.container}>
         <Text>Deck ID: {this.props.navigation.state.params.deckId}</Text>
         <Text>{this.props.deckInformation.title}</Text>
+        <Text>{this.props.deckInformation.questions.length} cards</Text>
         <TextButton onPress={this.addCard} style={{ margin: 20 }}>
           ADD CARD
         </TextButton>
