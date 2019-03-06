@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
 import { white } from "../utils/colors";
 import { connect } from "react-redux";
+import TextButton from "./TextButton";
 
 class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -18,6 +19,24 @@ class DeckDetail extends Component {
       <View style={styles.container}>
         <Text>Deck ID: {this.props.navigation.state.params.deckId}</Text>
         <Text>{this.props.deckInformation.title}</Text>
+        <TextButton
+          onPress={() => console.log("Add Card was pressed")}
+          style={{ margin: 20 }}
+        >
+          ADD CARD
+        </TextButton>
+        <TextButton
+          onPress={() => console.log("Start Quiz was pressed")}
+          style={{ margin: 20 }}
+        >
+          START QUIZ
+        </TextButton>
+        <TextButton
+          onPress={() => console.log("Delete was pressed")}
+          style={{ margin: 20 }}
+        >
+          Delete
+        </TextButton>
       </View>
     );
   }
