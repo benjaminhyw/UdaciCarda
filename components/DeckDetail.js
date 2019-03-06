@@ -5,18 +5,19 @@ import { connect } from "react-redux";
 
 class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => {
-    const { deckId } = navigation.state.params;
-
+    const { deckId, decks } = navigation.state.params;
     return {
-      title: deckId
+      title: decks[deckId].title
     };
   };
 
   render() {
+    const { deckInformation } = this.props;
+    console.log(deckInformation);
     return (
       <View style={styles.container}>
         <Text>Deck ID: {this.props.navigation.state.params.deckId}</Text>
-        <Text>RESET</Text> {/*Used to be TextButton component, check this */}
+        <Text>{this.props.deckInformation.title}</Text>
       </View>
     );
   }
@@ -30,4 +31,12 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(DeckDetail);
+function mapStateToProps(state, { navigation }) {
+  const { deckId } = navigation.state.params;
+  return {
+    deckId,
+    deckInformation: state[deckId]
+  };
+}
+
+export default connect(mapStateToProps)(DeckDetail);
