@@ -5,6 +5,7 @@ import {
 } from "react-navigation";
 import DeckList from "./DeckList";
 import AddDeck from "./AddDeck";
+import AddCard from "./AddCard";
 import { Platform } from "expo-core";
 import { purple, white } from "../utils/colors";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
@@ -66,18 +67,16 @@ const Nav = createStackNavigator({
         backgroundColor: purple
       }
     }
+  },
+  AddCard: {
+    screen: AddCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      }
+    }
   }
-
-  // below will have to be when you click on a deck
-  //   EntryDetail: {
-  //     screen: EntryDetail,
-  //     navigationOptions: {
-  //       headerTintColor: white,
-  //       headerStyle: {
-  //         backgroundColor: purple
-  //       }
-  //     }
-  //   }
 });
 
 export default Nav;
