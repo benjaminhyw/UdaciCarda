@@ -1,5 +1,11 @@
 import React, { Component } from "react";
-import { View, Text, Platform, StyleSheet } from "react-native";
+import {
+  View,
+  Text,
+  Platform,
+  StyleSheet,
+  TouchableOpacity
+} from "react-native";
 import { white } from "../utils/colors";
 import { connect } from "react-redux";
 
@@ -7,17 +13,34 @@ class DeckList extends Component {
   render() {
     let { deckIds, decks } = this.props;
     return (
-      <View>
-        <Text>DECK LIST</Text>
-        {deckIds &&
+      <View style={styles.container}>
+        {deckIds.length > 0 ? (
           deckIds.map(deckId => {
             return (
-              <View key={deckId} style={styles.item}>
-                <Text>{decks[deckId].title}</Text>
-                <Text>{`${decks[deckId].questions.length} Questions`}</Text>
-              </View>
+              <TouchableOpacity
+                key={deckId}
+                onPress={() => {
+                  this.props.navigation.navigate("DeckDetail", {
+                    deckId,
+                    decks
+                  });
+                }}
+              >
+                <View style={styles.item}>
+                  <Text>{decks[deckId].title}</Text>
+                  <Text>{`${decks[deckId].questions.length} Questions`}</Text>
+                </View>
+              </TouchableOpacity>
             );
-          })}
+          })
+        ) : (
+          <View style={styles.noDataText}>
+            <Text style={{ fontSize: 40, paddingTop: 40 }}>
+              0 Decks Available.
+            </Text>
+            <Text style={{ fontSize: 40 }}>Create One!</Text>
+          </View>
+        )}
       </View>
     );
   }
@@ -42,17 +65,17 @@ const styles = StyleSheet.create({
     }
   },
   noDataText: {
-    fontSize: 20,
     paddingTop: 20,
-    paddingBottom: 20
+    paddingBottom: 20,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 
-function mapStateToProps(decks) {
-  console.log(decks);
+function mapStateToProps(state) {
   return {
-    decks,
-    deckIds: Object.keys(decks)
+    decks: state.decks,
+    deckIds: Object.keys(state.decks)
   };
 }
 

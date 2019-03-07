@@ -10,8 +10,8 @@ import {
 import { timeToString } from "../utils/helpers";
 import { purple, white } from "../utils/colors";
 import { connect } from "react-redux";
-import { addDeck } from "../actions/decks";
-import { submitDeck } from "../utils/api";
+import { addCard } from "../actions/cards";
+import { submitCard } from "../utils/api";
 import { NavigationActions } from "react-navigation";
 
 function SubmitBtn({ onPress }) {
@@ -22,56 +22,48 @@ function SubmitBtn({ onPress }) {
       }
       onPress={onPress}
     >
-      <Text style={styles.submitBtnText}>CREATE DECK</Text>
+      <Text style={styles.submitBtnText}>Submit</Text>
     </TouchableOpacity>
   );
 }
 
-class AddDeck extends Component {
+class AddCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: ""
+      question: "Question",
+      answer: "Answer"
     };
   }
 
   submit = () => {
-    const key = timeToString();
-    const { title } = this.state;
+    const key = timeToString(); // this should be d${deckId}q${questionId}
+    const { question, answer } = this.state;
+    const { deckInformation } = this.props.navigation.state.params;
 
-    let deck = {
+    let card = {
       key: key,
-      title,
-      questions: []
+      question,
+      answer
     };
-    this.props.dispatch(addDeck(deck));
-    // TODO: above, call .then to navigate to DeckDetail
-
-    this.setState({ title: "" });
-    this.toHome();
-    submitDeck(deck);
-  };
-
-  toHome = () => {
-    this.props.navigation.dispatch(
-      NavigationActions.back({
-        key: "AddDeck"
-      })
-    );
+    this.props.dispatch(addCard(deckInformation.key, card));
+    this.props.goBack();
+    // submitCard(card);
   };
 
   render() {
     return (
       <View style={styles.container}>
         <View style={styles.center}>
-          <Text style={styles.deckTitleLabelText}>
-            What's the title of your new deck?
-          </Text>
           <TextInput
             style={styles.textInput}
-            placeholder="Enter title here..."
-            onChangeText={title => this.setState({ title })}
-            value={this.state.title}
+            onChangeText={question => this.setState({ question })}
+            value={this.state.question}
+          />
+          <TextInput
+            style={styles.textInput}
+            onChangeText={answer => this.setState({ answer })}
+            value={this.state.answer}
           />
           <SubmitBtn onPress={this.submit} />
         </View>
@@ -116,10 +108,6 @@ const styles = StyleSheet.create({
     fontSize: 22,
     textAlign: "center"
   },
-  deckTitleLabelText: {
-    fontSize: 30,
-    textAlign: "center"
-  },
   center: {
     flex: 1,
     justifyContent: "center",
@@ -129,4 +117,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(AddDeck);
+function mapDispatchToProps(dispatch, { navigation }) {
+  return {
+    goBack: () => navigation.goBack()
+  };
+}
+
+export default connect(mapDispatchToProps)(AddCard);
