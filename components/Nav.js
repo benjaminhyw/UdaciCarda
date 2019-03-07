@@ -6,6 +6,7 @@ import {
 import DeckList from "./DeckList";
 import AddDeck from "./AddDeck";
 import AddCard from "./AddCard";
+import Quiz from "./Quiz";
 import { Platform } from "expo-core";
 import { purple, white } from "../utils/colors";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
@@ -70,6 +71,15 @@ const Nav = createStackNavigator({
   },
   AddCard: {
     screen: AddCard,
+    navigationOptions: {
+      headerTintColor: white,
+      headerStyle: {
+        backgroundColor: purple
+      }
+    }
+  },
+  Quiz: {
+    screen: Quiz,
     navigationOptions: {
       headerTintColor: white,
       headerStyle: {

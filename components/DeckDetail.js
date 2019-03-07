@@ -29,7 +29,9 @@ class DeckDetail extends Component {
 
   startQuiz() {
     console.log("Start Quiz was pressed");
-    this.props.goBack();
+    this.props.navigation.navigate("Quiz", {
+      deckInformation: this.props.deckInformation
+    });
   }
 
   deleteDeck() {
