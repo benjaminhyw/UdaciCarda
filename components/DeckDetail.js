@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet } from "react-native";
-import { white } from "../utils/colors";
+import { white, red, gray } from "../utils/colors";
 import { connect } from "react-redux";
 import TextButton from "./TextButton";
 
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
   cardCount: {
     fontSize: 26,
     textAlign: "center",
-    color: "gray"
+    color: gray
   }
 });
 
