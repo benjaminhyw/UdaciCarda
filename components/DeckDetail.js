@@ -42,9 +42,10 @@ class DeckDetail extends Component {
     console.log(deckInformation);
     return (
       <View style={styles.container}>
-        <Text>Deck ID: {this.props.navigation.state.params.deckId}</Text>
-        <Text>{this.props.deckInformation.title}</Text>
-        <Text>{this.props.deckInformation.questions.length} cards</Text>
+        <Text style={styles.title}>{this.props.deckInformation.title}</Text>
+        <Text style={styles.cardCount}>
+          {this.props.deckInformation.questions.length} cards
+        </Text>
 
         <TextButton onPress={this.addCard} style={{ margin: 20 }}>
           ADD CARD
@@ -54,7 +55,7 @@ class DeckDetail extends Component {
           START QUIZ
         </TextButton>
         <TextButton onPress={this.deleteDeck} style={{ margin: 20 }}>
-          Delete
+          DELETE DECK
         </TextButton>
       </View>
     );
@@ -66,6 +67,15 @@ const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: white,
     padding: 15
+  },
+  title: {
+    fontSize: 40,
+    textAlign: "center"
+  },
+  cardCount: {
+    fontSize: 26,
+    textAlign: "center",
+    color: "gray"
   }
 });
 
