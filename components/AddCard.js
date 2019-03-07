@@ -10,7 +10,7 @@ import {
 import { timeToString } from "../utils/helpers";
 import { purple, white } from "../utils/colors";
 import { connect } from "react-redux";
-import { addCard } from "../actions";
+import { addCard } from "../actions/decks";
 import { submitCard } from "../utils/api";
 import { NavigationActions } from "react-navigation";
 
