@@ -31,7 +31,7 @@ class AddDeck extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "Enter title here.."
+      title: ""
     };
   }
 
@@ -45,7 +45,9 @@ class AddDeck extends Component {
       questions: []
     };
     this.props.dispatch(addDeck(deck));
-    // above, call .then to navigate to DeckDetail
+    // TODO: above, call .then to navigate to DeckDetail
+
+    this.setState({ title: "" });
     this.toHome();
     submitDeck(deck);
   };
@@ -67,6 +69,7 @@ class AddDeck extends Component {
           </Text>
           <TextInput
             style={styles.textInput}
+            placeholder="Enter title here..."
             onChangeText={title => this.setState({ title })}
             value={this.state.title}
           />
