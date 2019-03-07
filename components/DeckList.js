@@ -13,8 +13,8 @@ class DeckList extends Component {
   render() {
     let { deckIds, decks } = this.props;
     return (
-      <View>
-        {deckIds &&
+      <View style={styles.container}>
+        {deckIds.length > 0 ? (
           deckIds.map(deckId => {
             return (
               <TouchableOpacity
@@ -32,7 +32,15 @@ class DeckList extends Component {
                 </View>
               </TouchableOpacity>
             );
-          })}
+          })
+        ) : (
+          <View style={styles.noDataText}>
+            <Text style={{ fontSize: 40, paddingTop: 40 }}>
+              0 Decks Available.
+            </Text>
+            <Text style={{ fontSize: 40 }}>Create One!</Text>
+          </View>
+        )}
       </View>
     );
   }
@@ -57,9 +65,10 @@ const styles = StyleSheet.create({
     }
   },
   noDataText: {
-    fontSize: 20,
     paddingTop: 20,
-    paddingBottom: 20
+    paddingBottom: 20,
+    justifyContent: "center",
+    alignItems: "center"
   }
 });
 
