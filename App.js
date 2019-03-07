@@ -6,7 +6,7 @@ import { createAppContainer } from "react-navigation";
 import { createStore } from "redux";
 import { Provider } from "react-redux";
 import { purple } from "./utils/colors";
-import reducer from "./reducers";
+import reducer from "./reducers/index";
 import middleware from "./middleware";
 
 const AppContainer = createAppContainer(Nav);
