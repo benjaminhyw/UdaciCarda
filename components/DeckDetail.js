@@ -22,7 +22,9 @@ class DeckDetail extends Component {
 
   addCard() {
     console.log("Add Card was pressed");
-    this.props.navigation.navigate("AddCard");
+    this.props.navigation.navigate("AddCard", {
+      deckInformation: this.props.deckInformation
+    });
   }
 
   startQuiz() {
