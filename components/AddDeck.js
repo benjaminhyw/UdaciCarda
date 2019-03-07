@@ -45,6 +45,7 @@ class AddDeck extends Component {
       questions: []
     };
     this.props.dispatch(addDeck(deck));
+    // above, call .then to navigate to DeckDetail
     this.toHome();
     submitDeck(deck);
   };
