@@ -54,7 +54,10 @@ class DeckDetail extends Component {
         <TextButton onPress={this.startQuiz} style={{ margin: 20 }}>
           START QUIZ
         </TextButton>
-        <TextButton onPress={this.deleteDeck} style={{ margin: 20 }}>
+        <TextButton
+          onPress={this.deleteDeck}
+          style={{ margin: 20, color: red }}
+        >
           DELETE DECK
         </TextButton>
       </View>
