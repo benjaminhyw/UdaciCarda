@@ -64,11 +64,11 @@ const styles = StyleSheet.create({
   }
 });
 
-function mapStateToProps(decks) {
-  console.log(decks);
+function mapStateToProps(state) {
+  console.log(state);
   return {
-    decks,
-    deckIds: Object.keys(decks)
+    decks: state.decks,
+    deckIds: Object.keys(state.decks)
   };
 }
 
