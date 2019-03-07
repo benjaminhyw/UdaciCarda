@@ -10,7 +10,7 @@ import {
 import { timeToString } from "../utils/helpers";
 import { purple, white } from "../utils/colors";
 import { connect } from "react-redux";
-import { addCard } from "../actions/decks";
+import { addCard } from "../actions/cards";
 import { submitCard } from "../utils/api";
 import { NavigationActions } from "react-navigation";
 
@@ -39,23 +39,16 @@ class AddCard extends Component {
   submit = () => {
     const key = timeToString(); // this should be d${deckId}q${questionId}
     const { question, answer } = this.state;
+    const { deckInformation } = this.props.navigation.state.params;
 
     let card = {
       key: key,
       question,
       answer
     };
-    this.props.dispatch(addCard(card));
-    this.toHome();
-    submitCard(card);
-  };
-
-  toHome = () => {
-    this.props.navigation.dispatch(
-      NavigationActions.back({
-        key: "AddCard"
-      })
-    );
+    this.props.dispatch(addCard(deckInformation.key, card));
+    this.props.goBack();
+    // submitCard(card);
   };
 
   render() {
@@ -124,4 +117,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(AddCard);
+function mapDispatchToProps(dispatch, { navigation }) {
+  return {
+    goBack: () => navigation.goBack()
+  };
+}
+
+export default connect(mapDispatchToProps)(AddCard);
