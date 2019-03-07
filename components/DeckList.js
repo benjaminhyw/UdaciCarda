@@ -14,7 +14,6 @@ class DeckList extends Component {
     let { deckIds, decks } = this.props;
     return (
       <View>
-        <Text>DECK LIST</Text>
         {deckIds &&
           deckIds.map(deckId => {
             return (
