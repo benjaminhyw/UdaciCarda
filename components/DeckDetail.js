@@ -38,7 +38,7 @@ class DeckDetail extends Component {
   deleteDeck() {
     console.log("Delete Deck was pressed");
     this.props.dispatch(deleteDeck(this.props.deckInformation.key));
-    this.props.navigation.navigate("Home");
+    this.props.navigation.navigate("DeckList");
   }
 
   render() {
