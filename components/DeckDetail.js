@@ -8,7 +8,7 @@ class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => {
     const { deckId, decks } = navigation.state.params;
     return {
-      title: decks[deckId].title
+      title: decks[deckId] && decks[deckId].title
     };
   };
 

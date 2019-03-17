@@ -12,7 +12,6 @@ import { purple, white } from "../utils/colors";
 import { connect } from "react-redux";
 import { addDeck } from "../actions/decks";
 import { submitDeck } from "../utils/api";
-import { NavigationActions } from "react-navigation";
 
 function SubmitBtn({ onPress }) {
   return (
@@ -45,19 +44,17 @@ class AddDeck extends Component {
       questions: []
     };
     this.props.dispatch(addDeck(deck));
-    // TODO: above, call .then to navigate to DeckDetail
-
     this.setState({ title: "" });
-    this.toHome();
+    this.toDeckDetails(key);
     submitDeck(deck);
   };
 
-  toHome = () => {
-    this.props.navigation.dispatch(
-      NavigationActions.back({
-        key: "AddDeck"
-      })
-    );
+  toDeckDetails = deckId => {
+    let { decks } = this.props;
+    this.props.navigation.navigate("DeckDetail", {
+      deckId,
+      decks
+    });
   };
 
   render() {
@@ -129,4 +126,10 @@ const styles = StyleSheet.create({
   }
 });
 
-export default connect()(AddDeck);
+function mapStateToProps(state) {
+  return {
+    decks: state.decks
+  };
+}
+
+export default connect(mapStateToProps)(AddDeck);

@@ -31,8 +31,8 @@ class AddCard extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      question: "Question",
-      answer: "Answer"
+      question: "",
+      answer: ""
     };
   }
 
@@ -47,7 +47,13 @@ class AddCard extends Component {
       answer
     };
     this.props.dispatch(addCard(deckInformation.key, card));
-    this.props.goBack();
+    this.setState({
+      question: "",
+      answer: ""
+    });
+    this.props.navigation.navigate("DeckDetail", {
+      deckInformation: this.props.deckInformation
+    });
     // submitCard(card);
   };
 
@@ -57,11 +63,13 @@ class AddCard extends Component {
         <View style={styles.center}>
           <TextInput
             style={styles.textInput}
+            placeholder="Question"
             onChangeText={question => this.setState({ question })}
             value={this.state.question}
           />
           <TextInput
             style={styles.textInput}
+            placeholder="Answer"
             onChangeText={answer => this.setState({ answer })}
             value={this.state.answer}
           />
