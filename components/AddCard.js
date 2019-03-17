@@ -51,7 +51,9 @@ class AddCard extends Component {
       question: "",
       answer: ""
     });
-    this.props.goBack();
+    this.props.navigation.navigate("DeckDetail", {
+      deckInformation: this.props.deckInformation
+    });
     // submitCard(card);
   };
 
