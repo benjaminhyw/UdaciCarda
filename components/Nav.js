@@ -84,7 +84,8 @@ const Nav = createStackNavigator({
       headerTintColor: white,
       headerStyle: {
         backgroundColor: purple
-      }
+      },
+      title: "Quiz"
     }
   }
 });
