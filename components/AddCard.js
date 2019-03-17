@@ -37,9 +37,10 @@ class AddCard extends Component {
   }
 
   submit = () => {
-    const key = timeToString(); // this should be d${deckId}q${questionId}
     const { question, answer } = this.state;
     const { deckInformation } = this.props.navigation.state.params;
+    const key = `D${deckInformation.key}Q${deckInformation.questions.length +
+      1}`;
 
     let card = {
       key: key,
