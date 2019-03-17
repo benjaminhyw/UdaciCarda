@@ -1,7 +1,8 @@
-import { RECEIVE_DECKS, ADD_DECK } from "../actions/decks";
+import { RECEIVE_DECKS, ADD_DECK, DELETE_DECK } from "../actions/decks";
 import { ADD_CARD } from "../actions/cards";
 
 function decks(state = {}, action) {
+  let newState;
   switch (action.type) {
     case RECEIVE_DECKS:
       return {
@@ -14,13 +15,16 @@ function decks(state = {}, action) {
         [action.deck.key]: action.deck
       };
     case ADD_CARD:
-      let newState = Object.assign({}, state);
-
-      console.log("Your state is:");
-      console.log(newState);
+      newState = Object.assign({}, state);
       newState[action.deckId].questions.push(action.card);
       return {
-        ...state
+        ...newState
+      };
+    case DELETE_DECK:
+      newState = Object.assign({}, state);
+      delete newState[action.deckId];
+      return {
+        ...newState
       };
     default:
       return state;

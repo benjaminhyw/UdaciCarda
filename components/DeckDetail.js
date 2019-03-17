@@ -3,6 +3,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { white, red, gray } from "../utils/colors";
 import { connect } from "react-redux";
 import TextButton from "./TextButton";
+import { deleteDeck } from "../actions/decks";
 
 class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -36,7 +37,8 @@ class DeckDetail extends Component {
 
   deleteDeck() {
     console.log("Delete Deck was pressed");
-    this.props.goBack();
+    this.props.dispatch(deleteDeck(this.props.deckInformation.key));
+    this.props.navigation.navigate("DeckList");
   }
 
   render() {
@@ -44,9 +46,14 @@ class DeckDetail extends Component {
     console.log(deckInformation);
     return (
       <View style={styles.container}>
-        <Text style={styles.title}>{this.props.deckInformation.title}</Text>
+        <Text style={styles.title}>
+          {deckInformation && deckInformation.title}
+        </Text>
         <Text style={styles.cardCount}>
-          {this.props.deckInformation.questions.length} cards
+          {deckInformation && deckInformation.questions.length}{" "}
+          {deckInformation && deckInformation.questions.length === 1
+            ? "card"
+            : "cards"}
         </Text>
 
         <TextButton onPress={this.addCard} style={{ margin: 20 }}>
@@ -95,14 +102,15 @@ function mapStateToProps(state, { navigation }) {
 function mapDispatchToProps(dispatch, { navigation }) {
   const { deckId } = navigation.state.params;
 
+  // remove: () =>
+  //   dispatch(
+  //     addEntry({
+  //       [deckId]: timeToString() === deckId ? getDailyReminderValue() : null
+  //     })
+  //   ),
   return {
-    // remove: () =>
-    //   dispatch(
-    //     addEntry({
-    //       [deckId]: timeToString() === deckId ? getDailyReminderValue() : null
-    //     })
-    //   ),
-    goBack: () => navigation.goBack()
+    goBack: () => navigation.goBack(),
+    dispatch
   };
 }
 
