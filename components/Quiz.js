@@ -8,10 +8,16 @@ class Quiz extends Component {
     console.log(deckInformation);
     return (
       <View>
-        <Text>
-          Sorry, you can't take this quiz because there aren't any cards in this
-          deck yet.
-        </Text>
+        {deckInformation.questions.length === 0 ? (
+          <Text>
+            Sorry, you can't take this quiz because there aren't any cards in
+            this deck yet.
+          </Text>
+        ) : (
+          <Text>
+            You have {deckInformation.questions.length} questions to answer
+          </Text>
+        )}
       </View>
     );
   }
