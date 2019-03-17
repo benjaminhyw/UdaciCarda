@@ -43,9 +43,11 @@ class AddCard extends Component {
       1}`;
 
     let card = {
-      key: key,
+      key,
       question,
-      answer
+      answer: JSON.parse(answer.toLowerCase().trim()),
+      hasBeenAnswered: false,
+      hasBeenAnsweredCorrectly: false
     };
     this.props.dispatch(addCard(deckInformation.key, card));
     this.setState({
@@ -70,7 +72,7 @@ class AddCard extends Component {
           />
           <TextInput
             style={styles.textInput}
-            placeholder="Answer"
+            placeholder="Answer (enter true or false)"
             onChangeText={answer => this.setState({ answer })}
             value={this.state.answer}
           />
