@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Text } from "react-native";
 import TextButton from "./TextButton";
+import { updateDeck } from "../actions/decks";
 
 class QuizCard extends Component {
   constructor(props) {
@@ -9,11 +10,13 @@ class QuizCard extends Component {
 
     this.state = {
       showAnswer: false,
-      quizIndex: 0
+      quizIndex: 0,
+      quizScore: 0
     };
 
     this.onAnswerPress = this.onAnswerPress.bind(this);
     this.toggleShowAnswer = this.toggleShowAnswer.bind(this);
+    this.updateDeck = this.updateDeck.bind(this);
   }
 
   toggleShowAnswer() {
@@ -24,9 +27,31 @@ class QuizCard extends Component {
 
   onAnswerPress(answer) {
     console.log(`${answer} was pressed`);
+
+    if (
+      answer ===
+      this.props.deckInformation.questions[this.state.quizIndex].answer
+    ) {
+      this.setState({
+        quizScore: this.state.quizScore + 1
+      });
+    }
     this.setState({
       quizIndex: this.state.quizIndex + 1
     });
+    if (
+      this.state.quizIndex ===
+      this.props.deckInformation.questions.length - 1
+    ) {
+      this.updateDeck();
+    }
+  }
+
+  updateDeck() {
+    let deck = Object.assign({}, this.props.deckInformation);
+    deck.quizTaken = true;
+    deck.quizScore = this.state.quizScore;
+    this.props.dispatch(updateDeck(deck));
   }
 
   render() {
@@ -43,8 +68,10 @@ class QuizCard extends Component {
         <Text>
           {deckInformation.questions[quizIndex]
             ? this.state.showAnswer
-              ? deckInformation.questions[quizIndex].answer.toString()
-              : deckInformation.questions[quizIndex].question
+              ? deckInformation.questions[quizIndex] &&
+                deckInformation.questions[quizIndex].answer.toString()
+              : deckInformation.questions[quizIndex] &&
+                deckInformation.questions[quizIndex].question
             : "NO MORE CARDS!"}
         </Text>
 
@@ -69,4 +96,13 @@ class QuizCard extends Component {
   }
 }
 
-export default connect()(QuizCard);
+function mapDispatchToProps(dispatch) {
+  return {
+    dispatch
+  };
+}
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(QuizCard);
