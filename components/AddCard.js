@@ -39,8 +39,7 @@ class AddCard extends Component {
   submit = () => {
     const { question, answer } = this.state;
     const { deckInformation } = this.props.navigation.state.params;
-    const key = `D${deckInformation.key}Q${deckInformation.questions.length +
-      1}`;
+    const key = deckInformation.questions.length;
 
     let card = {
       key,
