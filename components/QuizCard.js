@@ -8,11 +8,11 @@ class QuizCard extends Component {
     super(props);
 
     this.state = {
-      showAnswer: true
+      showAnswer: false,
+      quizIndex: 0
     };
 
-    this.pressCorrect = this.pressCorrect.bind(this);
-    this.pressIncorrect = this.pressIncorrect.bind(this);
+    this.onAnswerPress = this.onAnswerPress.bind(this);
     this.toggleShowAnswer = this.toggleShowAnswer.bind(this);
   }
 
@@ -23,18 +23,11 @@ class QuizCard extends Component {
     });
   }
 
-  pressCorrect() {
-    console.log("CORRECT was pressed");
-    // this.props.navigation.navigate("AddCard", {
-    //   deckInformation: this.props.deckInformation
-    // });
-  }
-
-  pressIncorrect() {
-    console.log("INCORRECT was pressed");
-    // this.props.navigation.navigate("AddCard", {
-    //   deckInformation: this.props.deckInformation
-    // });
+  onAnswerPress(answer) {
+    console.log(`${answer} was pressed`);
+    this.setState({
+      quizIndex: this.state.quizIndex + 1
+    });
   }
 
   render() {
@@ -43,17 +36,34 @@ class QuizCard extends Component {
     return (
       <View>
         <Text>
-          You have {deckInformation.questions.length} questions to answer
+          You have {deckInformation.questions.length - this.state.quizIndex}{" "}
+          questions to answer
+        </Text>
+
+        <Text>
+          {deckInformation.questions[this.state.quizIndex]
+            ? this.state.showAnswer
+              ? deckInformation.questions[
+                  this.state.quizIndex
+                ].answer.toString()
+              : deckInformation.questions[this.state.quizIndex].question
+            : "NO MORE CARDS!"}
         </Text>
 
         <TextButton onPress={this.toggleShowAnswer} style={{ margin: 20 }}>
           {this.state.showAnswer ? "Show Question" : "Show Answer"}
         </TextButton>
 
-        <TextButton onPress={this.pressCorrect} style={{ margin: 20 }}>
+        <TextButton
+          onPress={() => this.onAnswerPress(true)}
+          style={{ margin: 20 }}
+        >
           CORRECT
         </TextButton>
-        <TextButton onPress={this.pressIncorrect} style={{ margin: 20 }}>
+        <TextButton
+          onPress={() => this.onAnswerPress(false)}
+          style={{ margin: 20 }}
+        >
           INCORRECT
         </TextButton>
       </View>
