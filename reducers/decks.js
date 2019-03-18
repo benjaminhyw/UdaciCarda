@@ -1,5 +1,11 @@
-import { RECEIVE_DECKS, ADD_DECK, DELETE_DECK } from "../actions/decks";
+import {
+  RECEIVE_DECKS,
+  ADD_DECK,
+  DELETE_DECK,
+  UPDATE_DECK
+} from "../actions/decks";
 import { ADD_CARD } from "../actions/cards";
+import { RESET_QUIZ } from "../actions/quiz";
 
 function decks(state = {}, action) {
   let newState;
@@ -23,6 +29,18 @@ function decks(state = {}, action) {
     case DELETE_DECK:
       newState = Object.assign({}, state);
       delete newState[action.deckId];
+      return {
+        ...newState
+      };
+    case UPDATE_DECK:
+      newState = Object.assign({}, state);
+      newState[action.deck.key] = action.deck;
+      return {
+        ...newState
+      };
+    case RESET_QUIZ:
+      newState = Object.assign({}, state);
+      newState[action.deck.key] = action.deck;
       return {
         ...newState
       };
