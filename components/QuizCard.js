@@ -7,8 +7,20 @@ class QuizCard extends Component {
   constructor(props) {
     super(props);
 
+    this.state = {
+      showAnswer: true
+    };
+
     this.pressCorrect = this.pressCorrect.bind(this);
     this.pressIncorrect = this.pressIncorrect.bind(this);
+    this.toggleShowAnswer = this.toggleShowAnswer.bind(this);
+  }
+
+  toggleShowAnswer() {
+    console.log("toggleShowAnswer was fired");
+    this.setState({
+      showAnswer: !this.state.showAnswer
+    });
   }
 
   pressCorrect() {
@@ -33,6 +45,11 @@ class QuizCard extends Component {
         <Text>
           You have {deckInformation.questions.length} questions to answer
         </Text>
+
+        <TextButton onPress={this.toggleShowAnswer} style={{ margin: 20 }}>
+          {this.state.showAnswer ? "Show Question" : "Show Answer"}
+        </TextButton>
+
         <TextButton onPress={this.pressCorrect} style={{ margin: 20 }}>
           CORRECT
         </TextButton>
