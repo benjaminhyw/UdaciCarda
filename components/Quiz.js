@@ -16,7 +16,7 @@ class Quiz extends Component {
             Sorry, you can't take this quiz because there aren't any cards in
             this deck yet.
           </Text>
-        ) : !deckInformation.quizTaken ? (
+        ) : !this.props.decks[deckInformation.key].quizTaken ? (
           <QuizCard deckInformation={deckInformation && deckInformation} />
         ) : (
           <QuizResults />
