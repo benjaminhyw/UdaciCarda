@@ -27,31 +27,36 @@ class QuizCard extends Component {
 
   onAnswerPress(answer) {
     console.log(`${answer} was pressed`);
+    console.log(
+      this.props.deckInformation.questions[this.state.quizIndex].answer
+    );
 
     if (
       answer ===
       this.props.deckInformation.questions[this.state.quizIndex].answer
     ) {
-      this.setState({
-        quizScore: this.state.quizScore + 1
-      });
+      this.setState(
+        {
+          quizScore: this.state.quizScore + 1
+        },
+        () => this.updateDeck()
+      );
     }
-    this.setState({
-      quizIndex: this.state.quizIndex + 1
-    });
-    if (
-      this.state.quizIndex ===
-      this.props.deckInformation.questions.length - 1
-    ) {
-      this.updateDeck();
-    }
+    this.setState(
+      {
+        quizIndex: this.state.quizIndex + 1
+      },
+      () => this.updateDeck()
+    );
   }
 
   updateDeck() {
-    let deck = Object.assign({}, this.props.deckInformation);
-    deck.quizTaken = true;
-    deck.quizScore = this.state.quizScore;
-    this.props.dispatch(updateDeck(deck));
+    if (this.state.quizIndex === this.props.deckInformation.questions.length) {
+      let deck = Object.assign({}, this.props.deckInformation);
+      deck.quizTaken = true;
+      deck.quizScore = this.state.quizScore;
+      this.props.dispatch(updateDeck(deck));
+    }
   }
 
   render() {
