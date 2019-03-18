@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { View, Text } from "react-native";
+import QuizCard from "./QuizCard";
 
 class Quiz extends Component {
   render() {
@@ -14,9 +15,7 @@ class Quiz extends Component {
             this deck yet.
           </Text>
         ) : (
-          <Text>
-            You have {deckInformation.questions.length} questions to answer
-          </Text>
+          <QuizCard deckInformation={deckInformation && deckInformation} />
         )}
       </View>
     );
