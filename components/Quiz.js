@@ -21,6 +21,7 @@ class Quiz extends Component {
         ) : (
           <QuizResults
             deckInformation={this.props.decks[deckInformation.key]}
+            navigation={this.props.navigation}
           />
         )}
       </View>
