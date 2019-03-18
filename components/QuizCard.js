@@ -17,7 +17,6 @@ class QuizCard extends Component {
   }
 
   toggleShowAnswer() {
-    console.log("toggleShowAnswer was fired");
     this.setState({
       showAnswer: !this.state.showAnswer
     });
@@ -32,21 +31,20 @@ class QuizCard extends Component {
 
   render() {
     const { deckInformation } = this.props;
+    const { quizIndex } = this.state;
     console.log(deckInformation);
     return (
       <View>
         <Text>
-          You have {deckInformation.questions.length - this.state.quizIndex}{" "}
-          questions to answer
+          You have {deckInformation.questions.length - quizIndex} questions to
+          answer
         </Text>
 
         <Text>
-          {deckInformation.questions[this.state.quizIndex]
+          {deckInformation.questions[quizIndex]
             ? this.state.showAnswer
-              ? deckInformation.questions[
-                  this.state.quizIndex
-                ].answer.toString()
-              : deckInformation.questions[this.state.quizIndex].question
+              ? deckInformation.questions[quizIndex].answer.toString()
+              : deckInformation.questions[quizIndex].question
             : "NO MORE CARDS!"}
         </Text>
 
