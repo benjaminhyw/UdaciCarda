@@ -5,6 +5,7 @@ import {
   UPDATE_DECK
 } from "../actions/decks";
 import { ADD_CARD } from "../actions/cards";
+import { RESET_QUIZ } from "../actions/quiz";
 
 function decks(state = {}, action) {
   let newState;
@@ -32,6 +33,12 @@ function decks(state = {}, action) {
         ...newState
       };
     case UPDATE_DECK:
+      newState = Object.assign({}, state);
+      newState[action.deck.key] = action.deck;
+      return {
+        ...newState
+      };
+    case RESET_QUIZ:
       newState = Object.assign({}, state);
       newState[action.deck.key] = action.deck;
       return {
