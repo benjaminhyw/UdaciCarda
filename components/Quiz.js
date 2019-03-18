@@ -19,7 +19,9 @@ class Quiz extends Component {
         ) : !this.props.decks[deckInformation.key].quizTaken ? (
           <QuizCard deckInformation={deckInformation && deckInformation} />
         ) : (
-          <QuizResults />
+          <QuizResults
+            deckInformation={this.props.decks[deckInformation.key]}
+          />
         )}
       </View>
     );
