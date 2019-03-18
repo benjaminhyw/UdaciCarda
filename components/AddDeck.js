@@ -39,9 +39,11 @@ class AddDeck extends Component {
     const { title } = this.state;
 
     let deck = {
-      key: key,
+      key,
       title,
-      questions: []
+      questions: [],
+      quizTaken: false,
+      quizScore: 0
     };
     this.props.dispatch(addDeck(deck));
     this.setState({ title: "" });
