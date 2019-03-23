@@ -1,14 +1,6 @@
 import { AsyncStorage } from "react-native";
-// import { formatCalendarResults } from "./_calendar";
 
 export const DECK_STORAGE_KEY = "UdaciCards:deck";
-
-// export async function fetchDeckList() {
-//   let results = await AsyncStorage.getItem(DECK_STORAGE_KEY);
-//   // .then(formatCalendarResults);
-//   console.log(results);
-//   return results;
-// } // this will be like getDeckListResults or something, maybe
 
 export function submitDeck(deck) {
   return AsyncStorage.mergeItem(

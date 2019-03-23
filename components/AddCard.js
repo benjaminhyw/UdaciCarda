@@ -73,12 +73,6 @@ class AddCard extends Component {
       this.state.question.toLowerCase().trim().length > 0 &&
       (this.state.answer.toLowerCase().trim() === "true" ||
         this.state.answer.toLowerCase().trim() === "false");
-    console.log(isDisabled);
-    console.log(this.state.answer);
-    console.log("$$$!");
-    console.log(!this.state.answer.toLowerCase().trim());
-    console.log(!this.state.answer.toLowerCase().trim());
-    console.log("$$$");
 
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
