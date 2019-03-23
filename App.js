@@ -1,21 +1,29 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React from "react";
+import { View } from "react-native";
+import UdaciStatusBar from "./components/UdaciStatusBar";
+import Nav from "./components/Nav";
+import { createAppContainer } from "react-navigation";
+import { createStore } from "redux";
+import { Provider } from "react-redux";
+import { purple } from "./utils/colors";
+import { setLocalNotification } from "./utils/helpers";
+import reducer from "./reducers/index";
+import middleware from "./middleware";
+
+const AppContainer = createAppContainer(Nav);
 
 export default class App extends React.Component {
+  componentDidMount() {
+    setLocalNotification();
+  }
   render() {
     return (
-      <View style={styles.container}>
-        <Text>Open up App.js to start working on your app!</Text>
-      </View>
+      <Provider store={createStore(reducer, middleware)}>
+        <View style={{ flex: 1 }}>
+          <UdaciStatusBar backgroundColor={purple} barStyle="light-content" />
+          <AppContainer />
+        </View>
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
