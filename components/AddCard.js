@@ -70,7 +70,7 @@ class AddCard extends Component {
 
   render() {
     let isDisabled =
-      this.state.answer.toLowerCase().trim().length > 0 &&
+      this.state.question.toLowerCase().trim().length > 0 &&
       (this.state.answer.toLowerCase().trim() === "true" ||
         this.state.answer.toLowerCase().trim() === "false");
     console.log(isDisabled);
