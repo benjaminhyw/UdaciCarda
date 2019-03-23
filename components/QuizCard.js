@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import { View, Text } from "react-native";
 import TextButton from "./TextButton";
 import { updateDeck } from "../actions/decks";
+import { clearLocalNotification, setLocalNotification } from "../utils/helpers";
 
 class QuizCard extends Component {
   constructor(props) {
@@ -56,6 +57,8 @@ class QuizCard extends Component {
       deck.quizTaken = true;
       deck.quizScore = this.state.quizScore;
       this.props.dispatch(updateDeck(deck));
+
+      clearLocalNotification().then(setLocalNotification());
     }
   }
 
@@ -66,8 +69,8 @@ class QuizCard extends Component {
     return (
       <View>
         <Text>
-          You have {deckInformation.questions.length - quizIndex} questions to
-          answer
+          You have {deckInformation.questions.length - quizIndex} questions left
+          to answer!
         </Text>
 
         <Text>
