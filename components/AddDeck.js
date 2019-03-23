@@ -5,7 +5,8 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
-  StyleSheet
+  StyleSheet,
+  KeyboardAvoidingView
 } from "react-native";
 import { timeToString } from "../utils/helpers";
 import { purple, white } from "../utils/colors";
@@ -61,7 +62,7 @@ class AddDeck extends Component {
 
   render() {
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <View style={styles.center}>
           <Text style={styles.deckTitleLabelText}>
             What's the title of your new deck?
@@ -74,7 +75,7 @@ class AddDeck extends Component {
           />
           <SubmitBtn onPress={this.submit} />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
