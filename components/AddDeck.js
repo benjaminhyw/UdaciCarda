@@ -5,20 +5,28 @@ import {
   TextInput,
   TouchableOpacity,
   Platform,
-  StyleSheet
+  StyleSheet,
+  KeyboardAvoidingView
 } from "react-native";
 import { timeToString } from "../utils/helpers";
-import { purple, white } from "../utils/colors";
+import { purple, white, gray } from "../utils/colors";
 import { connect } from "react-redux";
 import { addDeck } from "../actions/decks";
 import { submitDeck } from "../utils/api";
 
-function SubmitBtn({ onPress }) {
+function SubmitBtn({ onPress, disabled }) {
   return (
     <TouchableOpacity
       style={
-        Platform.OS === "ios" ? styles.iosSubmitBtn : styles.androidSubmitbtn
+        Platform.OS === "ios"
+          ? disabled
+            ? styles.disabledIosSubmitBtn
+            : styles.iosSubmitBtn
+          : disabled
+          ? styles.disabledAndroidSubmitbtn
+          : styles.androidSubmitbtn
       }
+      disabled={disabled}
       onPress={onPress}
     >
       <Text style={styles.submitBtnText}>CREATE DECK</Text>
@@ -60,8 +68,9 @@ class AddDeck extends Component {
   };
 
   render() {
+    let isDisabled = this.state.title.length > 0;
     return (
-      <View style={styles.container}>
+      <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
         <View style={styles.center}>
           <Text style={styles.deckTitleLabelText}>
             What's the title of your new deck?
@@ -72,9 +81,9 @@ class AddDeck extends Component {
             onChangeText={title => this.setState({ title })}
             value={this.state.title}
           />
-          <SubmitBtn onPress={this.submit} />
+          <SubmitBtn onPress={this.submit} disabled={!isDisabled} />
         </View>
-      </View>
+      </KeyboardAvoidingView>
     );
   }
 }
@@ -101,6 +110,25 @@ const styles = StyleSheet.create({
   },
   androidSubmitbtn: {
     backgroundColor: purple,
+    padding: 10,
+    paddingLeft: 30,
+    paddingRight: 30,
+    height: 45,
+    borderRadius: 2,
+    alignSelf: "flex-end",
+    justifyContent: "center",
+    alignItems: "center"
+  },
+  disabledIosSubmitBtn: {
+    backgroundColor: gray,
+    padding: 10,
+    borderRadius: 7,
+    height: 45,
+    marginLeft: 40,
+    marginRight: 40
+  },
+  disabledAndroidSubmitbtn: {
+    backgroundColor: gray,
     padding: 10,
     paddingLeft: 30,
     paddingRight: 30,
