@@ -2,6 +2,8 @@
 
 This is my code for the final assessment project for Udacity's React Native course.
 
+Tested on both iOS & Android.
+
 ## Instructions:
 
 - Clone Project
