@@ -22,28 +22,24 @@ class DeckDetail extends Component {
   }
 
   addCard() {
-    console.log("Add Card was pressed");
     this.props.navigation.navigate("AddCard", {
       deckInformation: this.props.deckInformation
     });
   }
 
   startQuiz() {
-    console.log("Start Quiz was pressed");
     this.props.navigation.navigate("Quiz", {
       deckInformation: this.props.deckInformation
     });
   }
 
   deleteDeck() {
-    console.log("Delete Deck was pressed");
     this.props.dispatch(deleteDeck(this.props.deckInformation.key));
     this.props.navigation.navigate("DeckList");
   }
 
   render() {
     const { deckInformation } = this.props;
-    console.log(deckInformation);
     return (
       <View style={styles.container}>
         <Text style={styles.title}>

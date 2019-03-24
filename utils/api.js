@@ -10,7 +10,7 @@ export function submitDeck(deck) {
       [deck.title]: deck.title,
       [deck.questions]: deck.questions
     })
-  ).then(console.log("saved deck"));
+  );
 }
 
 export function removeTitle(key) {

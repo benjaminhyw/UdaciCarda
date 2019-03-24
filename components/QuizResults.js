@@ -35,7 +35,6 @@ class QuizResults extends Component {
   }
   render() {
     let { deckInformation } = this.props;
-    console.log(deckInformation);
     return (
       <View>
         {deckInformation && (
