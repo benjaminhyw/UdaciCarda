@@ -8,7 +8,6 @@ class Quiz extends Component {
   render() {
     const { deckInformation } = this.props.navigation.state.params;
     const { decks } = this.props;
-    console.log(deckInformation);
     return (
       <View>
         {deckInformation.questions.length === 0 ? (

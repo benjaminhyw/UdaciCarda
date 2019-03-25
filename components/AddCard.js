@@ -52,7 +52,7 @@ class AddCard extends Component {
     let card = {
       key,
       question,
-      answer: JSON.parse(answer.toLowerCase().trim()),
+      answer: answer.toLowerCase().trim(),
       hasBeenAnswered: false,
       hasBeenAnsweredCorrectly: false
     };

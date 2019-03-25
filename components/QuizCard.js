@@ -27,13 +27,8 @@ class QuizCard extends Component {
   }
 
   onAnswerPress(answer) {
-    console.log(`${answer} was pressed`);
-    console.log(
-      this.props.deckInformation.questions[this.state.quizIndex].answer
-    );
-
     if (
-      answer ===
+      answer.toString() ===
       this.props.deckInformation.questions[this.state.quizIndex].answer
     ) {
       this.setState(
@@ -65,7 +60,6 @@ class QuizCard extends Component {
   render() {
     const { deckInformation } = this.props;
     const { quizIndex } = this.state;
-    console.log(deckInformation);
     return (
       <View>
         <Text>
