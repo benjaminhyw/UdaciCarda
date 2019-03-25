@@ -15,17 +15,8 @@ class QuizResults extends Component {
   resetQuiz() {
     let deck = Object.assign({}, this.props.deckInformation);
     deck.quizTaken = false;
-    deck.quizScore = false;
+    deck.quizScore = 0;
     this.props.dispatch(resetQuiz(deck));
-  }
-
-  updateDeck() {
-    if (this.state.quizIndex === this.props.deckInformation.questions.length) {
-      let deck = Object.assign({}, this.props.deckInformation);
-      deck.quizTaken = true;
-      deck.quizScore = this.state.quizScore;
-      this.props.dispatch(updateDeck(deck));
-    }
   }
 
   deckView() {
@@ -54,6 +45,7 @@ class QuizResults extends Component {
     );
   }
 }
+
 function mapDispatchToProps(dispatch) {
   return {
     dispatch

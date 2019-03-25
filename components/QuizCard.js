@@ -28,7 +28,7 @@ class QuizCard extends Component {
 
   onAnswerPress(answer) {
     if (
-      answer ===
+      answer.toString() ===
       this.props.deckInformation.questions[this.state.quizIndex].answer
     ) {
       this.setState(
