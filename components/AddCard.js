@@ -12,7 +12,7 @@ import { timeToString } from "../utils/helpers";
 import { purple, white, gray } from "../utils/colors";
 import { connect } from "react-redux";
 import { addCard } from "../actions/cards";
-import { submitCard } from "../utils/api";
+import { addCardToDeck } from "../utils/api";
 import { NavigationActions } from "react-navigation";
 
 function SubmitBtn({ onPress, disabled }) {
@@ -56,6 +56,7 @@ class AddCard extends Component {
       hasBeenAnswered: false,
       hasBeenAnsweredCorrectly: false
     };
+    addCardToDeck(deckInformation.key, card);
     this.props.dispatch(addCard(deckInformation.key, card));
     this.setState({
       question: "",
