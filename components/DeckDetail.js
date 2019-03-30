@@ -4,6 +4,7 @@ import { white, red, gray } from "../utils/colors";
 import { connect } from "react-redux";
 import TextButton from "./TextButton";
 import { deleteDeck } from "../actions/decks";
+import { removeDeck } from "../utils/api";
 
 class DeckDetail extends Component {
   static navigationOptions = ({ navigation }) => {
@@ -34,6 +35,7 @@ class DeckDetail extends Component {
   }
 
   deleteDeck() {
+    removeDeck(this.props.deckInformation.key);
     this.props.dispatch(deleteDeck(this.props.deckInformation.key));
     this.props.navigation.navigate("DeckList");
   }

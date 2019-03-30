@@ -8,9 +8,19 @@ import {
 } from "react-native";
 import { white } from "../utils/colors";
 import { connect } from "react-redux";
+import { receiveDecks } from "../actions/decks";
+import { getDecks, removeAll } from "../utils/api";
 
 class DeckList extends Component {
+  componentDidMount() {
+    getDecks().then(decks => {
+      console.log(decks);
+      this.props.dispatch(receiveDecks(decks));
+    });
+  }
+
   render() {
+    // removeAll();
     let { deckIds, decks } = this.props;
     return (
       <View style={styles.container}>
