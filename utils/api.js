@@ -6,18 +6,27 @@ export function submitDeck(deck) {
   return AsyncStorage.mergeItem(
     DECK_STORAGE_KEY,
     JSON.stringify({
-      [deck.key]: deck.key,
-      [deck.title]: deck.title,
-      [deck.questions]: deck.questions
+      [deck.key]: deck
     })
   );
 }
 
-export function removeTitle(key) {
+export async function removeDeck(key) {
   return AsyncStorage.getItem(DECK_STORAGE_KEY).then(results => {
     const data = JSON.parse(results);
     data[key] = undefined;
     delete data[key];
     AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data));
   });
+}
+
+export async function getDecks() {
+  return AsyncStorage.getItem(DECK_STORAGE_KEY).then(results => {
+    const data = JSON.parse(results);
+    return data;
+  });
+}
+
+export function removeAll() {
+  return AsyncStorage.clear();
 }
