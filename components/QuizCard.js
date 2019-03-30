@@ -34,7 +34,8 @@ class QuizCard extends Component {
           this.props.deckInformation.questions[this.state.quizIndex].answer
             ? this.state.quizScore + 1
             : this.state.quizScore,
-        quizIndex: this.state.quizIndex + 1
+        quizIndex: this.state.quizIndex + 1,
+        showAnswer: false
       },
       () => this.updateDeck()
     );
