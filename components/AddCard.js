@@ -12,7 +12,7 @@ import { timeToString } from "../utils/helpers";
 import { purple, white, gray } from "../utils/colors";
 import { connect } from "react-redux";
 import { addCard } from "../actions/cards";
-import { submitCard } from "../utils/api";
+import { addCardToDeck } from "../utils/api";
 import { NavigationActions } from "react-navigation";
 
 function SubmitBtn({ onPress, disabled }) {
@@ -56,6 +56,7 @@ class AddCard extends Component {
       hasBeenAnswered: false,
       hasBeenAnsweredCorrectly: false
     };
+    addCardToDeck(deckInformation.key, card);
     this.props.dispatch(addCard(deckInformation.key, card));
     this.setState({
       question: "",
@@ -71,8 +72,7 @@ class AddCard extends Component {
   render() {
     let isDisabled =
       this.state.question.toLowerCase().trim().length > 0 &&
-      (this.state.answer.toLowerCase().trim() === "true" ||
-        this.state.answer.toLowerCase().trim() === "false");
+      this.state.answer.toLowerCase().trim().length > 0;
 
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
@@ -85,7 +85,7 @@ class AddCard extends Component {
           />
           <TextInput
             style={styles.textInput}
-            placeholder="Answer (enter true or false)"
+            placeholder="Answer"
             onChangeText={answer => this.setState({ answer })}
             value={this.state.answer}
           />

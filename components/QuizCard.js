@@ -27,20 +27,12 @@ class QuizCard extends Component {
   }
 
   onAnswerPress(answer) {
-    if (
-      answer.toString() ===
-      this.props.deckInformation.questions[this.state.quizIndex].answer
-    ) {
-      this.setState(
-        {
-          quizScore: this.state.quizScore + 1
-        },
-        () => this.updateDeck()
-      );
-    }
     this.setState(
       {
-        quizIndex: this.state.quizIndex + 1
+        quizScore:
+          answer === true ? this.state.quizScore + 1 : this.state.quizScore,
+        quizIndex: this.state.quizIndex + 1,
+        showAnswer: false
       },
       () => this.updateDeck()
     );
