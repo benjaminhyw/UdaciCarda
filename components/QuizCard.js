@@ -30,10 +30,7 @@ class QuizCard extends Component {
     this.setState(
       {
         quizScore:
-          answer.toString() ===
-          this.props.deckInformation.questions[this.state.quizIndex].answer
-            ? this.state.quizScore + 1
-            : this.state.quizScore,
+          answer === true ? this.state.quizScore + 1 : this.state.quizScore,
         quizIndex: this.state.quizIndex + 1,
         showAnswer: false
       },

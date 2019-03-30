@@ -20,6 +20,7 @@ class QuizResults extends Component {
   }
 
   deckView() {
+    this.resetQuiz();
     this.props.navigation.navigate("DeckDetail", {
       deckInformation: this.props.deckInformation
     });

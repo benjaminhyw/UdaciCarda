@@ -72,8 +72,7 @@ class AddCard extends Component {
   render() {
     let isDisabled =
       this.state.question.toLowerCase().trim().length > 0 &&
-      (this.state.answer.toLowerCase().trim() === "true" ||
-        this.state.answer.toLowerCase().trim() === "false");
+      this.state.answer.toLowerCase().trim().length > 0;
 
     return (
       <KeyboardAvoidingView style={styles.container} behavior="padding" enabled>
@@ -86,7 +85,7 @@ class AddCard extends Component {
           />
           <TextInput
             style={styles.textInput}
-            placeholder="Answer (enter true or false)"
+            placeholder="Answer"
             onChangeText={answer => this.setState({ answer })}
             value={this.state.answer}
           />
