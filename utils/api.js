@@ -27,6 +27,15 @@ export async function getDecks() {
   });
 }
 
+export async function addCardToDeck(key, card) {
+  return AsyncStorage.getItem(DECK_STORAGE_KEY).then(results => {
+    const data = JSON.parse(results);
+    const asyncDeck = data[key];
+    asyncDeck.questions.push(card);
+    AsyncStorage.setItem(DECK_STORAGE_KEY, JSON.stringify(data));
+  });
+}
+
 export function removeAll() {
   return AsyncStorage.clear();
 }
